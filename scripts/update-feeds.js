@@ -299,7 +299,7 @@ async function updateFeed(sourceUrl) {
 const sleep = util.promisify(setTimeout);
 
 // 为新条目生成摘要，每60条等待1分钟
-const BATCH_SIZE = 60;
+const BATCH_SIZE = 15;
 let itemsWithSummaries = [];
 
 for (let i = 0; i < mergedItems.length; i += BATCH_SIZE) {
