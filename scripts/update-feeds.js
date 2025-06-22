@@ -166,6 +166,7 @@ ${cleanContent.slice(0, 5000)} // 限制内容长度以避免超出token限制
       ],
       temperature: 0.3,
       max_tokens: 500,
+      enable_thinking: false,
     });
 
     return completion.choices[0].message.content?.trim() || "无法生成摘要。";
