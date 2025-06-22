@@ -24,11 +24,6 @@ export const config = {
       category: "科技资讯",
     },
     {
-      name: "Github 今日热门",
-      url: "https://rsshub.rssforever.com/github/trending/daily/any",
-      category: "代码项目",
-    },
-    {
       name: "Github 近一周热门",
       url: "https://rsshub.rssforever.com/github/trending/weekly/any",
       category: "代码项目",
@@ -38,21 +33,7 @@ export const config = {
       url: "https://rsshub.rssforever.com/huggingface/daily-papers",
       category: "科研论文",
     },
-    {
-      name: "Hugging Face 博客",
-      url: "https://rsshub.rssforever.com/huggingface/blog",
-      category: "技术博客",
-    },
-    {
-      name: "Google 开发者博客",
-      url: "https://rsshub.rssforever.com/google/developers/en",
-      category: "技术博客",
-    },
-    {
-      name: "Google 研究博客",
-      url: "https://rsshub.rssforever.com/google/research",
-      category: "技术博客",
-    },
+    
     {
       name: "Simon Willison's Weblog",
       url: "https://simonwillison.net/atom/everything/",
@@ -68,11 +49,7 @@ export const config = {
       url: "https://r4l.deno.dev/https://linux.do/top.rss?period=daily",
       category: "论坛",
     },
-    {
-      name: "LINUX DO 近一周热门",
-      url: "https://r4l.deno.dev/https://linux.do/top.rss?period=weekly",
-      category: "论坛",
-    },
+    
     {
       name: "LINUX DO 近一月热门",
       url: "https://r4l.deno.dev/https://linux.do/top.rss?period=monthly",
@@ -83,13 +60,9 @@ export const config = {
       url: "https://rsshub.rssforever.com/v2ex/topics/hot",
       category: "论坛",
     },
-    {
-      name: "Bangumi 近一月热门",
-      url: "https://rsshub.rssforever.com/bangumi.tv/anime/followrank",
-      category: "番剧资讯",
-    },
+   
   ],
-  maxItemsPerFeed: 30,
+  maxItemsPerFeed: 20,
   dataPath: "./data",
 }
 
