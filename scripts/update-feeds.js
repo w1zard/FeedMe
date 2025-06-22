@@ -295,24 +295,58 @@ async function updateFeed(sourceUrl) {
     console.log(`发现 ${newItemsForSummary.length} 条新条目，来自 ${sourceUrl}`);
 
     // 为新条目生成摘要
-    const itemsWithSummaries = await Promise.all(
-      mergedItems.map(async (item) => {
-        // 如果是新条目且需要生成摘要
-        if (newItemsForSummary.some((newItem) => newItem.link === item.link) && !item.summary) {
-          try {
-            // 确保使用任何可用的内容源 - content, item 本身的 summary 字段, 或 contentSnippet
-            const contentForSummary = item.content || item.contentSnippet || "";
-            const summary = await generateSummary(item.title, contentForSummary);
-            return { ...item, summary };
-          } catch (err) {
-            console.error(`为条目 ${item.title} 生成摘要时出错:`, err);
-            return { ...item, summary: "无法生成摘要。" };
-          }
+    const util = require('util');
+const sleep = util.promisify(setTimeout);
+
+// 为新条目生成摘要，每60条等待1分钟
+const BATCH_SIZE = 60;
+let itemsWithSummaries = [];
+
+for (let i = 0; i < mergedItems.length; i += BATCH_SIZE) {
+  const batch = mergedItems.slice(i, i + BATCH_SIZE);
+  const batchResults = await Promise.all(
+    batch.map(async (item) => {
+      // 如果是新条目且需要生成摘要
+      if (newItemsForSummary.some((newItem) => newItem.link === item.link) && !item.summary) {
+        try {
+          // 确保使用任何可用的内容源 - content, item 本身的 summary 字段, 或 contentSnippet
+          const contentForSummary = item.content || item.contentSnippet || "";
+          const summary = await generateSummary(item.title, contentForSummary);
+          return { ...item, summary };
+        } catch (err) {
+          console.error(`为条目 ${item.title} 生成摘要时出错:`, err);
+          return { ...item, summary: "无法生成摘要。" };
         }
-        // 否则保持不变
-        return item;
-      }),
-    );
+      }
+      // 否则保持不变
+      return item;
+    })
+  );
+  itemsWithSummaries = itemsWithSummaries.concat(batchResults);
+  // 如果不是最后一批，等待1分钟
+  if (i + BATCH_SIZE < mergedItems.length) {
+    console.log('等待1分钟，防止API速率限制...');
+    await sleep(60000);
+  }
+}
+    // const itemsWithSummaries = await Promise.all(
+    //   mergedItems.map(async (item) => {
+    //     // 如果是新条目且需要生成摘要
+    //     if (newItemsForSummary.some((newItem) => newItem.link === item.link) && !item.summary) {
+    //       try {
+    //         // 确保使用任何可用的内容源 - content, item 本身的 summary 字段, 或 contentSnippet
+    //         const contentForSummary = item.content || item.contentSnippet || "";
+    //         const summary = await generateSummary(item.title, contentForSummary);
+    //         return { ...item, summary };
+    //       } catch (err) {
+    //         console.error(`为条目 ${item.title} 生成摘要时出错:`, err);
+    //         return { ...item, summary: "无法生成摘要。" };
+    //       }
+    //     }
+    //     // 否则保持不变
+    //     return item;
+    //   }),
+    // );
 
     // 创建新的数据对象
     const updatedData = {
