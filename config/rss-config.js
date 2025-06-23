@@ -27,30 +27,7 @@ export const config = {
       name: "Hacker News 历史每日前十",
       url: "https://rsshub.pseudoyu.com/github/issue/headllines/hackernews-daily",
       category: "科技资讯",
-    },
-    {
-      name: "Github 近一周热门",
-      url: "https://rsshub.pseudoyu.com/github/trending/weekly/any",
-      category: "代码项目",
-    },
-    {
-      name: "Product Hunt 今日热门",
-      url: "https://rsshub.pseudoyu.com/producthunt/today",
-      category: "产品资讯",
-    },
-    {
-      name: "LINUX DO 今日热门",
-      url: "https://r4l.deno.dev/https://linux.do/top.rss?period=daily",
-      category: "论坛",
-    },
-    
-    {
-      name: "LINUX DO 近一月热门",
-      url: "https://r4l.deno.dev/https://linux.do/top.rss?period=monthly",
-      category: "论坛",
-    },
-    
-   
+    }
   ],
   maxItemsPerFeed: 20,
   dataPath: "./data",
