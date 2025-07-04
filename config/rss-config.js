@@ -14,7 +14,7 @@
 export const config = {
   sources: [
     {
-      name: "V2EX 今日热门",
+      name: "V2EX 热门",
       url: "https://dawn-hall-b677.hiapp.workers.dev/?url=https%3A//www.v2ex.com/api/topics/hot.json",
       category: "论坛",
     },
