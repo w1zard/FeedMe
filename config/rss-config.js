@@ -15,17 +15,17 @@ export const config = {
   sources: [
     {
       name: "V2EX 今日热门",
-      url: "https://rsshub.pseudoyu.com/v2ex/topics/hot",
+      url: "https://dawn-hall-b677.hiapp.workers.dev/?url=https%3A//www.v2ex.com/api/topics/hot.json",
+      category: "论坛",
+    },
+    {
+      name: "V2EX 最新",
+      url: "https://dawn-hall-b677.hiapp.workers.dev/?url=https://www.v2ex.com/api/topics/latest.json",
       category: "论坛",
     },
     {
       name: "Hacker News 近期最佳",
       url: "https://hnrss.org/best",
-      category: "科技资讯",
-    },
-    {
-      name: "Hacker News 历史每日前十",
-      url: "https://rsshub.pseudoyu.com/github/issue/headllines/hackernews-daily",
       category: "科技资讯",
     }
   ],
